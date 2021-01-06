@@ -6,14 +6,26 @@ namespace _01_hello
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\aHello \n\"World\"!");
+            //PrintFunction();
+            //ArrayDeclaration();
+            //Downcast();
+            //If_Else_Ternaire();
+            //OperateursLogiques();
+
+            Tp_01 tp_01 = new Tp_01();
             
+        }
+        
+        private static bool PrintFunction()
+        {
+            Console.WriteLine("\aHello \n\"World\"!");
+
             bool b = default;
             Console.WriteLine("Default value of bool : " + b);
 
             const double PI = Math.PI;
             Console.WriteLine("Declare const double PI : " + PI);
-            
+
             bool result = PI is double;
             Console.WriteLine("\nPI is double ? " + result + "\n");
 
@@ -26,15 +38,30 @@ namespace _01_hello
             result = true && false; Console.WriteLine("true && false = " + result + "\n");
 
             result = true | false; Console.WriteLine("true | false = " + result);
-            
+            return result;
+        }
+
+        private static void ArrayDeclaration()
+        {
             int[,] tableau = new int[2, 2]
             {
                 {1,2},
                 {3,4}
-            };
+            }; 
+        }
 
-            If_Else_Ternaire();
-           
+        private static void Downcast()
+        {
+            int @int = 10;
+            byte @byte = 8;
+            @int = @byte;
+            //@byte = @int;
+        }
+        
+        private static void OperateursLogiques()
+        {
+            bool b = true || false; //true
+            b = true && true; // true
         }
 
         static void If_Else_Ternaire()
@@ -72,6 +99,5 @@ namespace _01_hello
 
             } while (nbLoop < 3);
         }
-
     }
 }
