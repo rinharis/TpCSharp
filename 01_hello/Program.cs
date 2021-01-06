@@ -11,11 +11,21 @@ namespace _01_hello
             //Downcast();
             //If_Else_Ternaire();
             //OperateursLogiques();
+            //Fonctions();
 
             Tp_01 tp_01 = new Tp_01();
-            
+            Tp_02_Calculatrice calculatrice = new Tp_02_Calculatrice();
         }
-        
+
+        private static void Fonctions()
+        {
+            Addition(6); // 2eme argument optionnel
+            int[] tab = { 5, 6, 7, 8, 9 };
+            Addition(tab);
+            Addition(5, 6, 7, 8); // on peut mettre plus ou moins d'argument
+            Addition(a: 12, b: 11, tab); //autre facon d'initialiser les arguments
+        }
+
         private static bool PrintFunction()
         {
             Console.WriteLine("\aHello \n\"World\"!");
@@ -99,5 +109,44 @@ namespace _01_hello
 
             } while (nbLoop < 3);
         }
+
+        /** b : parametre optionnel car initialise */
+        static int Addition(int a, int b = 2)
+        {
+            int result = a + b;
+            return result;
+        }
+        /** params : nombre inconnu de parametres */
+        static int Addition(params int[] entiers)
+        {
+            int result = 0;
+            foreach (int valeur in entiers)
+                result += valeur;
+            return result;
+        }
+
+        /// <summary>
+        /// Fonction somme des arguments rentres
+        /// </summary>
+        /// <param name="a">operande1</param>
+        /// <param name="b">operande2</param>
+        /// <param name="entiers">tableau de taille inconnue a l'avance</param>
+        /// <returns></returns>
+        static int Addition(int a, int b, params int[] entiers)
+        {
+            int result = 0;
+            foreach (int valeur in entiers)
+                result += valeur;
+            return result;
+        }
+        static int Addition(ref int a, ref int b, int c)
+        {
+            a = 5;
+            b = 10;
+            c = 15;
+            int result = a + b + c;
+            return result;
+        }
+
     }
 }

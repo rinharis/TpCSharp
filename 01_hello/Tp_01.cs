@@ -10,6 +10,7 @@ namespace _01_hello
         {
             //SaisieAffichageNom();
             //Addition();
+            //Addition();
             //PlusGrand();
             //ProfitPerte();
             //Jour();
@@ -20,10 +21,13 @@ namespace _01_hello
             //AlphabetChiffreSymbole();
             //EscalierEtoile();
             //PyramideInclinee();
+
             //TODO
-            PyramideDroite();
+            //PyramideDroite();
+
             //BouclePrenom();
             //FizzBuzz();
+            
 
         }
 
@@ -123,7 +127,6 @@ namespace _01_hello
             Console.WriteLine(numero + " --> " + jour);
         }
 
-        //TODO
         public void Calculatrice()
         {
             Console.WriteLine("\nExercice 6 : calculatrice");
@@ -131,10 +134,6 @@ namespace _01_hello
             var operande1 = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Saisis un operande entre + - * ou / :");
             char operateur = Console.ReadLine()[0];
-            //do
-            //{
-
-            //}while
             Console.WriteLine("Saisis un second operateur :");
             float operande2 = float.Parse(Console.ReadLine());
             float result;
