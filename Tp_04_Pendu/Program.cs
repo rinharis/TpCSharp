@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tp_04_Pendu
+namespace Tp_Pendu
 {
     class Program
     {

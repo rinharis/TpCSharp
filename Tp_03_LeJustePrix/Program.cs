@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tp_03_LeJustePrix
+namespace Tp_LeJustePrix
 {
     class Program
     {

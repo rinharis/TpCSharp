@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Palindrome
+namespace Tp_Palindrome
 {
     class Program
     {
