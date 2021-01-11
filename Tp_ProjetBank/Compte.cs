@@ -43,6 +43,8 @@ namespace Tp_ProjetBank
         public virtual void Retirer(double unMontant)
         {
             solde -= unMontant;
+            if (solde < 0)
+                throw new BanqueException("Retrait impossible car solde insuffisant.");
         }
         public override string ToString()
         {

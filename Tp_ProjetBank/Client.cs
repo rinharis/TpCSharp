@@ -5,14 +5,12 @@ namespace Tp_ProjetBank
 {
     class Client
     {
+        private const int MAX_NB_COMPTE = 5;
         private string nom { get; set; }
         private string prenom { get; set; }
         private int age { get; set; }
         private int numeroClient { get; set; }
-
-        //FIXIT : non initialisé, AjouterCompte ne fonctionne pas
-        private Compte[] comptes;
-        private const int MAX_NB_COMPTE = 5;
+        private Dictionary<int, Compte> comptes { get; set; }
         
         public Client() {}
 
@@ -29,58 +27,69 @@ namespace Tp_ProjetBank
         public Compte GetCompte(int numeroCompte)
         {
             if (this.comptes == null)
-                return null;
-            for (int i = 0; i < comptes.Length; i++)
             {
-                if (!comptes[i].GetNumero().Equals(0) && comptes[i].GetNumero() == numeroCompte)
-                    return comptes[i];
+                Console.WriteLine("Ce numero de compte n'existe pas.");
+                return null;
             }
-            Console.WriteLine("Le numero client " + numeroClient + " ne correspond a aucun compte.");
-            return null;
+            Compte compte = new Compte();
+            try
+            {
+                compte = comptes[numeroCompte];
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Le numero client " + numeroClient + " ne correspond a aucun compte.");
+                throw new BanqueException(e);
+            }
+            return compte;
         }
    
-        public Compte[] GetComptes()
+        public Dictionary<int, Compte> GetComptes()
         {
             Console.WriteLine(GetType().Name + " : methode GetComptes() :");
             if (this.comptes == null)
-                return null;
-            foreach (Compte compte in comptes)
             {
-                if(compte != null)
-                    Console.WriteLine(compte.ToString());
+                Console.WriteLine("Les comptes ne sont pas initialises");
+                return null;
             }
-            return this.comptes;
+            else
+                return this.comptes;
         }
         public void AjouterCompte(Compte compte)
         {
-            bool isAdded = false;
             if (this.comptes == null)
-                this.comptes = new Compte[MAX_NB_COMPTE];
-            if (this.comptes.Length <= MAX_NB_COMPTE)
             {
+                this.comptes = new Dictionary<int, Compte>();
+                this.comptes.Add(1, compte);
                 Console.WriteLine(GetType().Name + " : Ajout du compte " + compte);
-                for (int i = 0; i < MAX_NB_COMPTE; i++)
+            }
+            else if(this.comptes.Count < MAX_NB_COMPTE)
+            {
+                bool isAdded = false;
+                for (int i = 1; i <= MAX_NB_COMPTE; i++)
                 {
-                    if(this.comptes[i] == null && isAdded == false)
+                    if (!this.comptes.ContainsKey(i) && isAdded == false)
                     {
-                        this.comptes[i] = compte;
+                        Console.WriteLine(GetType().Name + " : Ajout du compte " + compte);
+                        comptes.Add(i, compte);
                         isAdded = true;
                     }
-
                 }
             }
             else
-                Console.WriteLine("Tentative d'ajout de compte impossible, nombre de compte maximum deja atteint.");
+                throw new BanqueException("Ajout de compte impossible, nombre de compte maximum deja atteint.");
         }
 
         public override string ToString()
         {
             string client = GetType().Name + " : " + nom + " " + prenom + ", " + age + " ans. Numero client : " + numeroClient + ".";
-            for (int i = 0; i < comptes.Length; i++)
+
+            Dictionary<int, Compte> result = this.comptes;
+            foreach (KeyValuePair<int, Compte> i in result)
             {
-                if (comptes[i] != null)
-                    client += comptes[i].ToString();
+                client += "\n\t" + i.Key + ", " + i.Value.ToString();
             }
+            Console.WriteLine(client);
             return client;
         }
     }

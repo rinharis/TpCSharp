@@ -2,7 +2,7 @@
 
 namespace Tp_ProjetBank
 {
-    class CompteRemunere : Compte
+    class CompteRemunere : Compte, ICompteRemunere
     {
         private double taux;
 

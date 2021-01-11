@@ -2,11 +2,11 @@
 
 namespace Tp_ProjetBank
 {
-    class CompteASeuil : Compte, ICompteASeuil
+    class CompteASeuilRemunere : CompteRemunere, ICompteASeuil
     {
         private double seuil;
-        public CompteASeuil() { }
-        public CompteASeuil(int numero, double soldeInitial, double seuil)
+        public CompteASeuilRemunere() { }
+        public CompteASeuilRemunere(int numero, double soldeInitial, double seuil)
         {
             SetNumero(numero);
             SetSolde(soldeInitial);
@@ -26,7 +26,10 @@ namespace Tp_ProjetBank
         {
             double aRetirer = GetSolde() - valeur;
             if (aRetirer > seuil)
+            {
                 SetSolde(aRetirer);
+                Console.WriteLine("Retrait de " + valeur);
+            }
             else
                 throw new BanqueException("Tentative de retrait > au seuil", new ArgumentOutOfRangeException());
         }
