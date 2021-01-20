@@ -14,6 +14,8 @@ namespace Tp_ProjetArmello
             Console.WriteLine("De.GetValeur : " + De.Lance());
             De.Lance();
             Console.WriteLine("De.GetValeur : " + De.Lance());
+
+            //WIP
             //Gobelet g1 = new Gobelet();
             //g1.LanceDe(8);
             //Console.WriteLine("Goblelet :" + g1.GetDes());
